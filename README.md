@@ -6,8 +6,8 @@ Riot tags animations middleware - WIP - stay tuned!
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
 
-[travis-image]:https://img.shields.io/travis/riot/riot-animore.svg?style=flat-square
-[travis-url]:https://travis-ci.org/riot/riot-animore
+[travis-image]:https://img.shields.io/travis/riot/animore.svg?style=flat-square
+[travis-url]:https://travis-ci.org/riot/animore
 
 [license-image]:http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
 [license-url]:LICENSE.txt
