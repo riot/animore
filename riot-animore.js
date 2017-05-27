@@ -165,7 +165,7 @@ var animore = riot.tag('animore', '<yield/>', function() {
       // make sure to avoid flickerings
       // in case of enter animations
       inheritFromParent(this);
-      if (this.opts.enter) { this.root.style.visibility = 'hidden'; }
+      if (this.opts.mount) { this.root.style.visibility = 'hidden'; }
     },
     onMount: function onMount$1() {
       updateIndex(this.root);

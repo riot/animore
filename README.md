@@ -48,23 +48,36 @@ For example:
 
 ```html
 <my-tag>
-  <p data-is="animore" mount={{ duration: 200, translateX: [-100, 0] }}>
+  <p data-is="animore" mount={{ duration: 1000, translateX: [500, 0] }}>
     Hello there
   </p>
 </my-tag>
 ```
 
-The `<p>` tag will be animated from a position of `transform: translateX(-100px)` to `transform: translateX(0)` in `200` milliseconds during the `mount` event. This animation will happend only once when mounted.
+[demo](http://plnkr.co/edit/ueWBXRKI5GiXOeWa2dHI?p=preview)
+
+The `<p>` tag will be animated from a position of `transform: translateX(500px)` to `transform: translateX(0)` in `1000` milliseconds during the `mount` event. This animation will happend only once when mounted.
 
 The animore tags can trigger the `mount` animation when used together with a riot `if` condition. For example:
 
 ```html
 <my-tag>
-  <p if={ isVisible } data-is="animore" mount={{ duration: 200, translateX: [-100, 0] }}>
+  <p if={ isVisible } data-is="animore" mount={{ duration: 1000, translateX: [500, 0] }}>
     Hello there
   </p>
+
+  <button onclick={ toggle }>toggle</button>
+
+  <script>
+    this.isVisible = true
+    toggle() {
+      this.isVisible = !this.isVisible
+    }
+  </script>
 </my-tag>
 ```
+
+[demo](http://plnkr.co/edit/8gcoxVfB4M1Ri4VkXYOP?p=preview)
 
 The `mount` animation will be triggered whenever the `if` condition will change from `false` to `true`.
 
@@ -75,13 +88,26 @@ As for the `mount` the `unmount` animations will be triggered when an `animore` 
 
 ```html
 <my-tag>
-  <p data-is="animore" unmount={{ duration: 200, translateX: 100 }}>
+  <p if={ isVisible }
+    data-is="animore"
+    unmount={{ duration: 1000, translateX: 300 }}>
     Hello there
   </p>
+
+  <button onclick={ toggle }>toggle</button>
+
+  <script>
+    this.isVisible = true
+    toggle() {
+      this.isVisible = !this.isVisible
+    }
+  </script>
 </my-tag>
 ```
 
-The above example will translate the `<p>` tag of `100px` in `200` milliseconds before removing it from the DOM.
+[demo](http://plnkr.co/edit/IS7S2pghzNnAIlxKDGN6?p=preview)
+
+The above example will translate the `<p>` tag of `300px` in `1000` milliseconds before removing it from the DOM.
 
 
 ## Update
@@ -90,12 +116,14 @@ Animore makes the update transitions a lot easier thanks to the [`flip` approach
 
 ```html
 <my-tag>
-  <article data-is="animore" update={{ duration: 500, easing: 'linear' }}>
-    <p>Hello there</p>
+  <article>
     <p if={ moreText }>{moreText}</p>
   </article>
+  <article data-is="animore" update={{ duration: 500, easing: 'linear' }}>
+    <p>Hello there</p>
+  </article>
 
-  <button onclick={ addMoreText }></button>
+  <button onclick={ addMoreText }>more text</button>
 
   <script>
     addMoreText() {
@@ -104,6 +132,8 @@ Animore makes the update transitions a lot easier thanks to the [`flip` approach
   </script>
 </my-tag>
 ```
+
+[demo](http://plnkr.co/edit/DQaQ5RdWIN8xosVhdBdc?p=preview)
 
 In this case `animore` will update the `<article>` tag creating a smooth transition when more text will be added to it.
 
@@ -133,6 +163,8 @@ For example:
   </ul>
 </my-tag>
 ```
+
+[demo](http://plnkr.co/edit/Wab3jbampHc7OKyLdQeR?p=preview)
 
 [travis-image]:https://img.shields.io/travis/riot/animore.svg?style=flat-square
 [travis-url]:https://travis-ci.org/riot/animore
