@@ -1,2 +1,2 @@
-# animation-tags
-Riot animation tags - WIP - stay tuned!
+# riot-animore
+Riot tags animations middleware - WIP - stay tuned!

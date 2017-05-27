@@ -1,7 +1,7 @@
 {
-  "name": "riot-animation-tags",
+  "name": "riot-animore",
   "version": "0.0.0",
-  "description": "Riot animations tag",
+  "description": "Riot tags animations middleware",
   "main": "index.js",
   "scripts": {
     "build": "rollup -c rollup.config.js > index.js",
@@ -24,6 +24,9 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-riot": "^1.0.0",
+    "jsdom": "11.0.0",
+    "jsdom-global": "3.0.2",
+    "raf": "^3.3.2",
     "rollup": "^0.41.6",
     "rollup-plugin-buble": "^0.15.0",
     "rollup-plugin-commonjs": "^8.0.2",
