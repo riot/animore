@@ -17,8 +17,8 @@ function createWrapper(html) {
 
 describe('riot-animore core', () => {
   it('a simple tag can be properly animated on mount', (done) => {
-    const tag = riot.mount(createWrapper('<p>hello</p>'), 'animate', {
-      enter: {
+    const tag = riot.mount(createWrapper('<p>hello</p>'), 'animore', {
+      mount: {
         translateX: 1,
         duration: 200,
         complete() {
@@ -27,12 +27,11 @@ describe('riot-animore core', () => {
         }
       }
     })[0]
-
   })
 
   it('a simple tag can be properly animated on unmount', (done) => {
-    const tag = riot.mount(createWrapper('<p>hello</p>'), 'animate', {
-      leave: {
+    const tag = riot.mount(createWrapper('<p>hello</p>'), 'animore', {
+      unmount: {
         translateX: 1,
         duration: 200,
         complete() {
@@ -45,13 +44,13 @@ describe('riot-animore core', () => {
   })
 
 // TODO: fix me
-  it('list items can properly handle flip animations', (done) => {
-    riot.tag('list', '<ul><li data-is="animate" each="{ items }"></li></ul>', function() {
+  it('list items can properly handle update animations', (done) => {
+    riot.tag('list', '<ul><li data-is="animore" each="{ items }"></li></ul>', function() {
       this.items = [1, 2, 3]
     })
     let callCount = 0
     const tag = riot.mount(createWrapper(), 'list', {
-      flip: {
+      update: {
         duration: 200,
         complete() {
           callCount ++
@@ -62,5 +61,6 @@ describe('riot-animore core', () => {
 
     tag.items.reverse()
     tag.update()
+    tag.unmount()
   })
 })

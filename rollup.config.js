@@ -5,7 +5,7 @@ import buble from 'rollup-plugin-buble'
 export default {
   entry: 'lib/index.js',
   format: 'umd',
-  moduleName: 'animationTags',
+  moduleName: 'riotAnimore',
   globals: {
     riot: 'riot'
   },

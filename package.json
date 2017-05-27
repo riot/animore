@@ -2,13 +2,19 @@
   "name": "riot-animore",
   "version": "0.0.0",
   "description": "Riot tags animations middleware",
-  "main": "index.js",
+  "main": "riot-animore.js",
+  "module": "lib/index.js",
+  "main:next": "lib/index.js",
   "scripts": {
     "prepublish": "npm run build",
-    "build": "rollup -c rollup.config.js > index.js",
-    "test": "mocha test",
-    "lint": "eslint lib/*"
+    "build": "rollup -c rollup.config.js > riot-animore.js",
+    "test": "npm run lint && mocha test",
+    "lint": "eslint lib test"
   },
+  "files": [
+    "lib",
+    "animore.js"
+  ],
   "keywords": [
     "riot",
     "animations",
