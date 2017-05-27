@@ -4,6 +4,7 @@
   "description": "Riot tags animations middleware",
   "main": "index.js",
   "scripts": {
+    "prepublish": "npm run build",
     "build": "rollup -c rollup.config.js > index.js",
     "test": "mocha test",
     "lint": "eslint lib/*"
