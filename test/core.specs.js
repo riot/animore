@@ -2,6 +2,7 @@ const riot = require('riot')
 const raf = require('raf')
 // node js DOM polyfills
 require('jsdom-global')()
+global.SVGElement = HTMLUnknownElement
 global.requestAnimationFrame = raf
 global.cancelAnimationFrame = raf.cancel
 // require the lib
@@ -44,22 +45,22 @@ describe('riot-animore core', () => {
   })
 
 // TODO: fix me
-/*  it('list items can properly handle flip animations', (done) => {
+  it('list items can properly handle flip animations', (done) => {
     riot.tag('list', '<ul><li data-is="animate" each="{ items }"></li></ul>', function() {
       this.items = [1, 2, 3]
     })
+    let callCount = 0
     const tag = riot.mount(createWrapper(), 'list', {
       flip: {
         duration: 200,
         complete() {
-          done()
+          callCount ++
+          if (callCount === 3) done()
         }
       }
     })[0]
 
-    setTimeout(() => {
-      tag.items.reverse()
-      tag.update()
-    }, 100)
-  })*/
+    tag.items.reverse()
+    tag.update()
+  })
 })
