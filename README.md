@@ -1,5 +1,5 @@
 # riot-animore
-Riot tags animations middleware.
+Riot tags animations hooks via [anime](https://github.com/juliangarnier/anime). - beta release
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-version-image]][npm-url]
@@ -165,6 +165,11 @@ For example:
 ```
 
 [demo](http://plnkr.co/edit/Wab3jbampHc7OKyLdQeR?p=preview)
+
+
+# Callbacks
+
+You can use all the animation [callbacks provided by anime](http://anime-js.com/documentation/#allCallbacks)
 
 [travis-image]:https://img.shields.io/travis/riot/animore.svg?style=flat-square
 [travis-url]:https://travis-ci.org/riot/animore
