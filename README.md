@@ -171,6 +171,26 @@ For example:
 
 You can use all the animation [callbacks provided by anime](http://anime-js.com/documentation/#allCallbacks)
 
+```html
+<my-tag>
+  <p data-is="animore" mount={{
+    duration: 1000,
+    translateX: [500, 0],
+    complete: done
+  }}>
+    Hello there
+  </p>
+
+  <script>
+    done() {
+      console.log('i was mounted')
+    }
+  </script>
+</my-tag>
+```
+
+[demo](http://plnkr.co/edit/FrHHmq34vzpB1LpUwLg3?p=preview)
+
 [travis-image]:https://img.shields.io/travis/riot/animore.svg?style=flat-square
 [travis-url]:https://travis-ci.org/riot/animore
 

@@ -61,3 +61,6 @@ typings/
 
 # generated files
 /index.js
+
+# useless files
+.DS_Store
