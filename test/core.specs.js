@@ -43,7 +43,6 @@ describe('riot-animore core', () => {
     tag.unmount()
   })
 
-// TODO: fix me
   it('list items can properly handle update animations', (done) => {
     riot.tag('list', '<ul><li data-is="animore" each="{ items }"></li></ul>', function() {
       this.items = [1, 2, 3]

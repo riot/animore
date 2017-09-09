@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('riot')) :
 	typeof define === 'function' && define.amd ? define(['exports', 'riot'], factory) :
-	(factory((global.riotAnimore = global.riotAnimore || {}),global.riot));
+	(factory((global.riotAnimore = {}),global.riot));
 }(this, (function (exports,riot) { 'use strict';
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -44,10 +44,10 @@ n.speed=1;n.running=q;n.remove=function(a){a=M(a);for(var b=q.length;b--;){ for(
 b.duration=0;b.add=function(a){b.children.forEach(function(a){a.began=!0;a.completed=!0;});w(a).forEach(function(a){var c=b.duration,d=a.offset;a.autoplay=!1;a.offset=g.und(d)?c:K(d,c);b.seek(a.offset);a=n(a);a.duration>c&&(b.duration=a.duration);a.began=!0;b.children.push(a);});b.reset();b.seek(0);b.autoplay&&b.restart();return b};return b};n.random=function(a,b){return Math.floor(Math.random()*(b-a+1))+a};return n});
 });
 
-var riotExtend = riot.util.misc.extend;
+var riotExtend$1 = riot.util.misc.extend;
 var slice = [].slice;
 
-var extend = riotExtend;
+var extend = riotExtend$1;
 
 /**
  * Animation trigger when a tag gets mounted
