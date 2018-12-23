@@ -1,5 +1,5 @@
 # riot-animore
-Riot tags animations hooks via [anime](https://github.com/juliangarnier/anime). - beta release
+Riot tags animations hooks via [anime](https://github.com/juliangarnier/anime).
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-version-image]][npm-url]
