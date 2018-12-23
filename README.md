@@ -1,6 +1,8 @@
 # riot-animore
 Riot tags animations hooks via [anime](https://github.com/juliangarnier/anime).
 
+This script supports all the browsers supported by [Riot.js](https://github.com/riot/riot).
+
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-version-image]][npm-url]
 [![NPM downloads][npm-downloads-image]][npm-url]
