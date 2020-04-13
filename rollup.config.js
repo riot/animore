@@ -1,15 +1,27 @@
+import babel from 'rollup-plugin-babel'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
-import buble from 'rollup-plugin-buble'
+import riot  from 'rollup-plugin-riot'
+
 
 export default {
-  entry: 'lib/index.js',
-  format: 'umd',
-  moduleName: 'riotAnimore',
+  input: 'lib/index.js',
+  output: [{
+    format: 'umd',
+    name: 'Animore'
+  }],
+  moduleName: 'Animore',
   globals: {
     riot: 'riot'
   },
   interop: false,
   external: ['riot'],
-  plugins: [ resolve(), commonjs(), buble() ]
+  plugins: [
+    resolve(),
+    commonjs(),
+    riot(),
+    babel({
+      presets: ['@riotjs/babel-preset']
+    })
+  ]
 }

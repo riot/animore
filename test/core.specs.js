@@ -47,7 +47,7 @@ describe('riot-animore core', () => {
     riot.tag('list', '<ul><li data-is="animore" each="{ items }"></li></ul>', function() {
       this.items = [1, 2, 3]
     })
-    let callCount = 0
+    let callCount = 0 // eslint-disable-line
     const tag = riot.mount(createWrapper(), 'list', {
       update: {
         duration: 200,
@@ -58,7 +58,7 @@ describe('riot-animore core', () => {
       }
     })[0]
 
-    tag.items.reverse()
+    tag.items.reverse() // eslint-disable-line
     tag.update()
     tag.unmount()
   })

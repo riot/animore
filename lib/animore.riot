@@ -1,0 +1,125 @@
+<animore>
+  <script>
+  import {pure, __} from 'riot'
+  import anime from 'animejs'
+
+  const { template, bindingTypes } = __.DOMBindings
+
+  /**
+   * Get the boundaries of a DOM node and its opacity
+   * @param   { HTMLElement } root - node we want to check
+   * @returns { Object } props
+   * @returns { Object } props.bounds - node boundaries
+   * @returns { number } props.opacity - node opacity value
+   */
+  function getProps(root) {
+    return {
+      bounds: root.getBoundingClientRect(),
+      opacity: +(root.style.opacity || 1)
+    }
+  }
+
+  export default pure(({ slots, attributes, props }) => {
+    let prevProps
+
+    const evaluateAttribute = (name, ...args) => {
+      if (!attributes) return
+
+      const attr = props && props[name] || attributes.find(a => a.name === name)
+
+      if (attr) {
+        return attr.evaluate(...args)
+      }
+    }
+
+    /**
+     * Internal helpers
+     */
+
+    /**
+     * Apply a flip animation comparing the root previous position with the current one
+     * @param { HTMLElement } root - root tag
+     * @param { HTMLElement } flipOpts - flip animation options
+     */
+    function doFlip(root, flipOpts) {
+      const newProps = getProps(root)
+      anime(...(typeof flipOpts === 'object' ? flipOpts : {}), ...{
+        targets: root,
+        translateX: [prevProps.bounds.left - newProps.bounds.left, 0],
+        translateY: [prevProps.bounds.top - newProps.bounds.top, 0],
+        scaleX: [prevProps.bounds.width / newProps.bounds.width, 1],
+        scaleY: [prevProps.bounds.height / newProps.bounds.height, 1],
+        opacity: [prevProps.opacity, newProps.opacity]
+      })
+    }
+
+    return {
+      mount(el, context) {
+        const mountOptions = evaluateAttribute('mount', context)
+
+        this.el = el
+        this.createSlot(el, context)
+
+        if (!mountOptions) return
+
+        this.el.style.visibility = 'hidden'
+
+        anime({
+          ...mountOptions,
+          targets: this.el,
+          begin: (...args) => {
+            this.el.style.visibility = null
+            if (mountOptions.begin) mountOptions.begin(...args)
+          }
+        })
+      },
+
+      createSlot(el, context) {
+        if (!slots || !slots.length) return
+
+        this.slot = template('<slot></slot>', [{
+          type: bindingTypes.SLOT,
+          selector: 'slot',
+          name: 'default'
+        }])
+
+        this.slot.mount(this.el, {
+          slots
+        }, context)
+      },
+
+
+      update(context) {
+        const updateOptions = evaluateAttribute('update', context)
+
+        if (updateOptions) prevProps = getProps(this.el)
+
+        if (this.slot) {
+          this.slot.update({}, context)
+        }
+
+        if (updateOptions) doFlip(this.el, updateOptions)
+      },
+
+      unnmount(...args) {
+        const unmountOptions = evaluateAttribute('unmount', context)
+        const parentNode = this.el.parentNode
+        const unmontSlot = () => this.slot ? this.slot.unmount(...args) : null
+
+        if (unmountOptions) {
+          anime({
+            ...unmountOptions,
+            targets: clone,
+            complete: (...args) => {
+              unmontSlot()
+              if (unmountOptions.complete) unmountOptions.complete(...args)
+            }
+          })
+        } else {
+          unmontSlot()
+        }
+      },
+    }
+  })
+  </script>
+</animore>
