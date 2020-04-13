@@ -1835,22 +1835,22 @@
           if (updateOptions) doFlip(this.el, updateOptions);
         },
 
-        unnmount(...args) {
+        unmount(context, ...rest) {
           const unmountOptions = evaluateAttribute('unmount', context);
           const parentNode = this.el.parentNode;
-          const unmontSlot = () => this.slot ? this.slot.unmount(...args) : null;
+          const clearDOM = () => this.slot ? this.slot.unmount(context, ...rest) : null;
 
           if (unmountOptions) {
             anime({
               ...unmountOptions,
-              targets: clone,
+              targets: this.el,
               complete: (...args) => {
-                unmontSlot();
+                clearDOM();
                 if (unmountOptions.complete) unmountOptions.complete(...args);
               }
             });
           } else {
-            unmontSlot();
+            clearDOM();
           }
         },
       }
