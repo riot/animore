@@ -1,0 +1,18 @@
+<animate-mount>
+  <p is="animore" mount={{
+    translateX: 100,
+    complete: props.onAnimationFinished
+  }}>
+    Hello
+  </p>
+
+  <script>
+    import Animore from '../../src/animore.riot'
+
+    export default {
+      components: {
+        Animore
+      }
+    }
+  </script>
+</animate-mount>

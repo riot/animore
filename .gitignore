@@ -58,9 +58,12 @@ typings/
 # dotenv environment variables file
 .env
 
-
 # generated files
 /index.js
+/index.umd.js
 
 # useless files
 .DS_Store
+
+# editor files
+.idea

@@ -43,13 +43,18 @@
      */
     function doFlip(root, flipOpts) {
       const newProps = getProps(root)
-      anime(...(typeof flipOpts === 'object' ? flipOpts : {}), ...{
+      return anime({
         targets: root,
         translateX: [prevProps.bounds.left - newProps.bounds.left, 0],
         translateY: [prevProps.bounds.top - newProps.bounds.top, 0],
         scaleX: [prevProps.bounds.width / newProps.bounds.width, 1],
         scaleY: [prevProps.bounds.height / newProps.bounds.height, 1],
-        opacity: [prevProps.opacity, newProps.opacity]
+        opacity: [prevProps.opacity, newProps.opacity],
+        ...(typeof flipOpts === 'object' ? flipOpts : {}),
+        complete(...args) {
+          prevProps = newProps
+          if (flipOpts.complete) flipOpts.complete(...args)
+        }
       })
     }
 
@@ -60,16 +65,23 @@
         this.el = el
         this.createSlot(el, context)
 
-        if (!mountOptions) return
+        if (!mountOptions) {
+          prevProps = getProps(el)
+          return
+        }
 
         this.el.style.visibility = 'hidden'
 
-        anime({
+        this.animation = anime({
           ...mountOptions,
           targets: this.el,
           begin: (...args) => {
             this.el.style.visibility = null
             if (mountOptions.begin) mountOptions.begin(...args)
+          },
+          complete(...args) {
+            prevProps = getProps(el)
+            if (mountOptions.complete) mountOptions.complete(...args)
           }
         })
       },
@@ -77,7 +89,7 @@
       createSlot(el, context) {
         if (!slots || !slots.length) return
 
-        this.slot = template('<slot></slot>', [{
+        this.slot = template(`<slot></slot>`, [{
           type: bindingTypes.SLOT,
           selector: 'slot',
           name: 'default'
@@ -88,26 +100,45 @@
         }, context)
       },
 
+      flushAnimation() {
+        if (!this.animation) return
+        this.animation.pause()
+        anime.remove(this.animation)
+        this.animation = null
+      },
 
       update(context) {
         const updateOptions = evaluateAttribute('update', context)
-
-        if (updateOptions) prevProps = getProps(this.el)
+        // force the animation complete to avoid flickering
+        if (this.animation && !this.animation.paused) {
+          this.flushAnimation()
+          prevProps = getProps(this.el)
+        }
 
         if (this.slot) {
           this.slot.update({}, context)
         }
 
-        if (updateOptions) doFlip(this.el, updateOptions)
+        if (updateOptions) {
+          this.animation = doFlip(this.el, updateOptions)
+        }
       },
 
       unmount(context, ...rest) {
         const unmountOptions = evaluateAttribute('unmount', context)
         const parentNode = this.el.parentNode
-        const unmountSlot = () => this.slot ? this.slot.unmount(context, ...rest) : null
+        const unmountSlot = () => {
+          if (!this.slot) return
 
-        if (unmountOptions) {
-          anime({
+          parentNode.removeChild(this.el)
+
+          this.slot.unmount(context, ...rest)
+        }
+
+        this.flushAnimation()
+
+        if (unmountOptions && parentNode) {
+          this.animation = anime({
             ...unmountOptions,
             targets: this.el,
             complete: (...args) => {

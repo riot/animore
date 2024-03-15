@@ -2,48 +2,51 @@
   "name": "@riotjs/animore",
   "version": "4.0.0",
   "description": "Riot tags animations middleware",
-  "main": "riot-animore.js",
-  "module": "lib/index.js",
-  "main:next": "lib/index.js",
+  "main": "index.umd.js",
+  "jsnext:main": "index.js",
+  "module": "index.js",
+  "exports": {
+    ".": {
+      "import": "./index.js",
+      "require": "./index.umd.js",
+      "browser": "./index.umd.js"
+    }
+  },
+  "type": "module",
   "scripts": {
     "prepublishOnly": "npm run build",
-    "build": "rollup -c rollup.config.js > riot-animore.js",
-    "test": "npm run lint && mocha test",
-    "lint": "eslint lib test"
+    "build": "rollup -c",
+    "test": "npm run lint && c8 mocha -r test/setup.js test/*.spec.js",
+    "lint": "eslint test"
   },
   "files": [
-    "lib",
-    "animore.js"
+    "src",
+    "index.umd.js",
+    "index.js"
   ],
   "keywords": [
     "riot",
     "animations",
     "anime"
   ],
-  "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
+  "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (https://gianlucaguarini.com)",
   "license": "MIT",
   "dependencies": {
-    "animejs": "^3.2.0"
-  },
-  "peerDependencies": {
-    "riot": "^4.12.0"
+    "animejs": "^3.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.9.0",
-    "@babel/preset-env": "^7.9.5",
-    "@riotjs/babel-preset": "^1.0.0",
-    "@riotjs/compiler": "^4.8.2",
-    "eslint": "^6.8.0",
-    "eslint-config-riot": "^3.0.0",
-    "jsdom": "16.2.2",
-    "jsdom-global": "3.0.2",
-    "mocha": "^7.1.1",
-    "raf": "^3.4.1",
-    "rollup": "^2.6.1",
-    "rollup-plugin-babel": "^4.4.0",
-    "rollup-plugin-buble": "^0.19.8",
-    "rollup-plugin-commonjs": "^10.1.0",
-    "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-riot": "^4.0.0"
+    "@happy-dom/global-registrator": "^13.8.6",
+    "@riotjs/compiler": "^9.0.7",
+    "@riotjs/register": "^9.0.0",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "c8": "^9.1.0",
+    "chai": "^5.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-riot": "^4.1.2",
+    "mocha": "^10.3.0",
+    "riot": "^9.1.4",
+    "rollup": "^4.13.0",
+    "rollup-plugin-riot": "^9.0.2"
   }
 }
