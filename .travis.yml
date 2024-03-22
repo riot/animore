@@ -7,8 +7,7 @@ branches:
     - master
     - dev
 
-script:
-  npm i riot && npm run build
+script: npm i riot && npm run build
 
 sudo: false
 
@@ -17,4 +16,4 @@ cache:
     - node_modules
 
 notifications:
-    email: false
+  email: false

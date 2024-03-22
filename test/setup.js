@@ -5,4 +5,3 @@ import { GlobalRegistrator } from '@happy-dom/global-registrator'
 register('@riotjs/register', pathToFileURL('./'))
 
 GlobalRegistrator.register()
-

@@ -37,6 +37,7 @@
   "devDependencies": {
     "@happy-dom/global-registrator": "^13.8.6",
     "@riotjs/compiler": "^9.0.7",
+    "@riotjs/prettier-config": "^1.1.0",
     "@riotjs/register": "^9.0.0",
     "@rollup/plugin-commonjs": "^25.0.7",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -45,6 +46,7 @@
     "eslint": "^8.57.0",
     "eslint-config-riot": "^4.1.2",
     "mocha": "^10.3.0",
+    "prettier": "^3.2.5",
     "riot": "^9.1.4",
     "rollup": "^4.13.0",
     "rollup-plugin-riot": "^9.0.2"

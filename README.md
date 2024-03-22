@@ -1,4 +1,5 @@
 # riot-animore
+
 Riot tags animations hooks via [anime](https://github.com/juliangarnier/anime).
 
 This script supports all the browsers supported by [Riot.js](https://github.com/riot/riot).
@@ -11,6 +12,7 @@ This script supports all the browsers supported by [Riot.js](https://github.com/
 # Installation
 
 Via npm
+
 ```shell
 $ npm i riot-animore -S
 ```
@@ -83,7 +85,6 @@ The animore tags can trigger the `mount` animation when used together with a rio
 
 The `mount` animation will be triggered whenever the `if` condition will change from `false` to `true`.
 
-
 ## Unmount
 
 As for the `mount` the `unmount` animations will be triggered when an `animore` node will be unmounted. For example:
@@ -111,7 +112,6 @@ As for the `mount` the `unmount` animations will be triggered when an `animore` 
 
 The above example will translate the `<p>` tag of `300px` in `1000` milliseconds before removing it from the DOM.
 
-
 ## Update
 
 Animore makes the update transitions a lot easier thanks to the [`flip` approach](https://aerotwist.com/blog/flip-your-animations/). Animore will check the state of your tags before and after an update event trying to create a smooth animation between the two. For example:
@@ -138,7 +138,6 @@ Animore makes the update transitions a lot easier thanks to the [`flip` approach
 [demo](http://plnkr.co/edit/DQaQ5RdWIN8xosVhdBdc?p=preview)
 
 In this case `animore` will update the `<article>` tag creating a smooth transition when more text will be added to it.
-
 
 # List Items
 
@@ -168,7 +167,6 @@ For example:
 
 [demo](http://plnkr.co/edit/Wab3jbampHc7OKyLdQeR?p=preview)
 
-
 # Callbacks
 
 You can use all the animation [callbacks provided by anime](http://anime-js.com/documentation/#allCallbacks)
@@ -193,12 +191,10 @@ You can use all the animation [callbacks provided by anime](http://anime-js.com/
 
 [demo](http://plnkr.co/edit/FrHHmq34vzpB1LpUwLg3?p=preview)
 
-[travis-image]:https://img.shields.io/travis/riot/animore.svg?style=flat-square
-[travis-url]:https://travis-ci.org/riot/animore
-
-[license-image]:http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
-[license-url]:LICENSE.txt
-
-[npm-version-image]:http://img.shields.io/npm/v/riot-animore.svg?style=flat-square
-[npm-downloads-image]:http://img.shields.io/npm/dm/riot-animore.svg?style=flat-square
-[npm-url]:https://npmjs.org/package/riot-animore
+[travis-image]: https://img.shields.io/travis/riot/animore.svg?style=flat-square
+[travis-url]: https://travis-ci.org/riot/animore
+[license-image]: http://img.shields.io/badge/license-MIT-000000.svg?style=flat-square
+[license-url]: LICENSE.txt
+[npm-version-image]: http://img.shields.io/npm/v/riot-animore.svg?style=flat-square
+[npm-downloads-image]: http://img.shields.io/npm/dm/riot-animore.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/riot-animore
