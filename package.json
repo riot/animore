@@ -17,7 +17,7 @@
     "prepublishOnly": "npm run build",
     "build": "rollup -c",
     "test": "npm run lint && c8 mocha -r test/setup.js test/*.spec.js",
-    "lint": "eslint test"
+    "lint": "eslint src test rollup.config.js && prettier -c ."
   },
   "files": [
     "src",
