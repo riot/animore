@@ -1,7 +1,7 @@
 {
   "name": "@riotjs/animore",
   "version": "4.0.0",
-  "description": "Riot tags animations middleware",
+  "description": "Riot tags animation Tag",
   "main": "index.umd.js",
   "jsnext:main": "index.js",
   "module": "index.js",
@@ -32,23 +32,23 @@
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (https://gianlucaguarini.com)",
   "license": "MIT",
   "dependencies": {
-    "animejs": "^3.2.2"
+    "animejs": "^4.2.2"
   },
   "devDependencies": {
-    "@happy-dom/global-registrator": "^13.8.6",
-    "@riotjs/compiler": "^9.0.7",
+    "@happy-dom/global-registrator": "^20.0.5",
+    "@riotjs/compiler": "^10.0.1",
     "@riotjs/prettier-config": "^1.1.0",
-    "@riotjs/register": "^9.0.0",
-    "@rollup/plugin-commonjs": "^25.0.7",
-    "@rollup/plugin-node-resolve": "^15.2.3",
-    "c8": "^9.1.0",
-    "chai": "^5.1.0",
-    "eslint": "^8.57.0",
-    "eslint-config-riot": "^4.1.2",
-    "mocha": "^10.3.0",
-    "prettier": "^3.2.5",
-    "riot": "^9.1.4",
-    "rollup": "^4.13.0",
-    "rollup-plugin-riot": "^9.0.2"
+    "@riotjs/register": "^10.0.0",
+    "@rollup/plugin-commonjs": "^28.0.8",
+    "@rollup/plugin-node-resolve": "^16.0.3",
+    "c8": "^10.1.3",
+    "chai": "^6.2.0",
+    "eslint": "^9.38.0",
+    "eslint-config-riot": "^5.0.2",
+    "mocha": "^11.7.4",
+    "prettier": "^3.6.2",
+    "riot": "^10.0.1",
+    "rollup": "^4.52.4",
+    "rollup-plugin-riot": "^10.0.0"
   }
 }

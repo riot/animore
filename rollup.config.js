@@ -1,9 +1,8 @@
 import commonjs from '@rollup/plugin-commonjs'
 import resolve from '@rollup/plugin-node-resolve'
-import riot from 'rollup-plugin-riot'
 
 export default {
-  input: 'src/animore.riot',
+  input: 'src/animore.js',
   output: [
     {
       format: 'umd',
@@ -22,5 +21,5 @@ export default {
   },
   interop: false,
   external: ['riot'],
-  plugins: [resolve(), commonjs(), riot()],
+  plugins: [resolve(), commonjs()],
 }

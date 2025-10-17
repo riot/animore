@@ -1,6 +1,0 @@
-{
-  "extends": "eslint-config-riot",
-  "rules": {
-    "fp/no-rest-parameters": "off",
-  }
-}

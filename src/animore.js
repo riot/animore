@@ -1,14 +1,14 @@
 import { pure, __ } from 'riot'
-import anime from 'animejs'
+import { animate, utils } from 'animejs'
 
 const { template, bindingTypes } = __.DOMBindings
 
 /**
  * Get the boundaries of a DOM node and its opacity
- * @param   { HTMLElement } root - node we want to check
- * @returns { Object } props
- * @returns { Object } props.bounds - node boundaries
- * @returns { number } props.opacity - node opacity value
+ * @param   {HTMLElement} root - node we want to check
+ * @returns {object} props
+ * @property {object} bounds - node boundaries
+ * @property {number} opacity - node opacity value
  */
 function getProps(root) {
   return {
@@ -35,10 +35,10 @@ export default pure(({ slots, attributes, props }) => {
 
   /**
    * Apply a flip animation comparing the root previous position with the current one
-   * @param { Object } prevProps - dom node animation properties
-   * @param { Object } newProps - dom node animation properties
+   * @param {object} prevProps - dom node animation properties
+   * @param {object} newProps - dom node animation properties
    * @param { HTMLElement } flipOpts - flip animation options
-   * @return { Object } anime instance
+   * @returns {object} anime instance
    */
   function doFlip(prevProps, newProps, flipOpts) {
     return {
@@ -64,14 +64,13 @@ export default pure(({ slots, attributes, props }) => {
 
       this.el.style.visibility = 'hidden'
 
-      this.animation = anime({
+      this.animation = animate(this.el, {
         ...mountOptions,
-        targets: this.el,
-        begin: (...args) => {
+        onBegin: (...args) => {
           this.el.style.visibility = null
           if (mountOptions.begin) mountOptions.begin(...args)
         },
-        complete: (...args) => {
+        onComplete: (...args) => {
           this.prevProps = getProps(this.el)
           if (mountOptions.complete) mountOptions.complete(...args)
         },
@@ -104,15 +103,15 @@ export default pure(({ slots, attributes, props }) => {
       if (this.slot) this.slot.update({}, context)
       if (this.animation) {
         this.animation.pause()
-        anime.remove(this.animation)
+        utils.remove(this.el, this.animation)
       }
 
       if (updateOptions) {
-        this.animation = anime(
+        this.animation = animate(
+          this.el,
           doFlip(this.prevProps, getProps(this.el), {
             ...updateOptions,
-            targets: this.el,
-            complete: (...args) => {
+            onComplete: (...args) => {
               this.prevProps = getProps(this.el)
               if (updateOptions.complete) updateOptions.complete(...args)
             },
@@ -132,17 +131,16 @@ export default pure(({ slots, attributes, props }) => {
         clone && clone.remove()
 
         this.slot.unmount(context, ...rest)
-        anime.remove(this.animation)
+        utils.remove(this.el, this.animation)
       }
 
-      anime.remove(this.animation)
+      utils.remove(this.el, this.animation)
 
       if (unmountOptions && parentNode) {
         const clone = this.el.cloneNode(true)
         this.el.after(clone)
-        this.animation = anime({
+        this.animation = animate(clone, {
           ...unmountOptions,
-          targets: clone,
           complete: (...args) => {
             unmountSlot(clone)
             if (unmountOptions.complete) unmountOptions.complete(...args)
