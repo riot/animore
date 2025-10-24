@@ -1,4 +1,4 @@
-import { pure, __ } from 'riot'
+import { __, createPureComponent } from 'riot'
 import { animate, utils } from 'animejs'
 
 const { template, bindingTypes } = __.DOMBindings
@@ -17,7 +17,7 @@ function getProps(root) {
   }
 }
 
-export default pure(({ slots, attributes, props }) => {
+export default createPureComponent(({ slots, attributes, props }) => {
   const evaluateAttribute = (name, ...args) => {
     if (!attributes) return
 
