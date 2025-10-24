@@ -119,7 +119,6 @@ export default createPureComponent(({ slots, attributes, props }) => {
         )
       }
     },
-
     unmount(context, ...rest) {
       const unmountOptions = evaluateAttribute('unmount', context)
       const parentNode = this.el.parentNode
@@ -141,7 +140,7 @@ export default createPureComponent(({ slots, attributes, props }) => {
         this.el.after(clone)
         this.animation = animate(clone, {
           ...unmountOptions,
-          complete: (...args) => {
+          onComplete: (...args) => {
             unmountSlot(clone)
             if (unmountOptions.complete) unmountOptions.complete(...args)
           },

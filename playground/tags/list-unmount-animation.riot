@@ -1,0 +1,46 @@
+<my-tag>
+  <ul>
+    <li
+      each={ (item, i) in state.items }
+      is="animore"
+      update={{
+        duration: 300,
+        translateX: 100,
+        offset: i * 100,
+        easing: 'linear'
+      }}
+      unmount={{
+        duration: 300,
+        translateX: -100,
+        easing: 'linear'
+      }}
+      key={item.id}
+      mount={{
+        duration: 200,
+        translateX: 100,
+        offset: i * 100
+      }}>
+      Hello there {i}
+      <button onclick={() => removeItem(item)}>Remove</button>
+    </li>
+  </ul>
+
+  <script>
+    export default {
+      components: {
+        Animore: globalThis.Animore
+      },
+      state: {
+        items: []
+      },
+      onBeforeMount() {
+        this.state.items = Array.from({ length: 50 }).map(() => ({id: Math.random()}))
+      },
+      removeItem(item) {
+        this.update({
+          items: this.state.items.filter(i => i !== item)
+        })
+      } 
+    }
+  </script>
+</my-tag>

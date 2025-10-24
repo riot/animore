@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/riot/riot+compiler.min.js"
+    ></script>
+    <script type="text/javascript" src="../index.umd.js"></script>
+    <script type="riot" src="./tags/list-unmount-animation.riot"></script>
+  </head>
+  <body>
+    <my-tag></my-tag>
+    <script type="module">
+      riot.compile().then(() => {
+        riot.mount('my-tag', {
+          message: 'hello',
+        })
+      })
+    </script>
+  </body>
+</html>
