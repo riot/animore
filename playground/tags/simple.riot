@@ -1,0 +1,12 @@
+<my-tag>
+  <p is="animore" mount={{ duration: 1000, translateX: [500, 0] }}>
+    {props.message}
+  </p>
+  <script>
+    export default {
+      components: {
+        Animore: globalThis.Animore
+      }
+    }
+  </script>
+</my-tag>
